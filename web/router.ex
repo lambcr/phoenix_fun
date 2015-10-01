@@ -18,6 +18,9 @@ defmodule Support.Router do
 
     get "/", PageController, :index
 
+    get "/register", RegistrationController, :new
+    post "/register", RegistrationController, :create
+
     get "/helloagain/:name", PageController, :hello
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show

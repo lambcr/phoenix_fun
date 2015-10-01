@@ -31,6 +31,20 @@ defmodule Support.User do
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email) #Turns nasty db errors into user friendly error message.
     |> validate_confirmation(:password, message: "must match password")
+    |> encrypt_password()
+  end
+
+  #private function
+  defp encrypt_password(changeset) do
+    if password = get_change(changeset, :password) do
+      put_change changeset, :encrypted_password, hash_password(password)
+    else
+      changeset
+    end
+  end
+
+  defp hash_password(password) do
+    Comeonin.Bcrypt.hashpwsalt(password)
   end
 
 end
