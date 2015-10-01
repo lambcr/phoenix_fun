@@ -26,6 +26,8 @@ defmodule Support.Router do
     post "/login", SessionController, :create
     delete "/logout", SessionController, :delete
 
+    resources "/issues", IssueController
+
     get "/helloagain/:name", PageController, :hello
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
