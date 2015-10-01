@@ -1,0 +1,5 @@
+<div class="jumbotron">
+  <h2>HELLO <%= @name %><h2>
+</div>
+<div>welcome</div>
+<%= inspect @conn.assigns %>
