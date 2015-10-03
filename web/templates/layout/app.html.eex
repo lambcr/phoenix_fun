@@ -15,7 +15,12 @@
     <div class="container" role="main">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+        <%= if @current_user do %>
+          <li><%= link "Log out", to: session_path(@conn, :delete), class: "btn btn-primary", method: :delete %></li>
+        <% else %>
+          <li><%= link "Login", to: session_path(@conn, :new), class: "btn btn-default" %></li>
+          <li><%= link "Register", to: registration_path(@conn, :new), class: "btn btn-primary" %></li>
+        <% end %>
         </ul>
         <span class="logo"></span>
       </div>
@@ -26,6 +31,7 @@
       <%= @inner %>
 
     </div> <!-- /container -->
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script> <!-- TODO: Fix this -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script>window.userToken = "<%= assigns[:user_token] %>";</script>
   </body>

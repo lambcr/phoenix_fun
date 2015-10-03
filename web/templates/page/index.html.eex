@@ -1,11 +1,8 @@
 <div class="jumbotron">
   <%= if @current_user do %>
-    <h2>Welcome <%= @current_user.name %> </h2>
-    <%= link "Log out", to: session_path(@conn, :delete), class: "btn btn-primary", method: :delete %>
+    <h3>Welcome <%= @current_user.name %> </h2>
+    <p class="lead">Let's <%= link "Chat", to: hello_path(@conn, :index)%></p>
   <% else %>
-    <h2>Welcome Guest!</h2>
-    <%= link "Login", to: session_path(@conn, :new), class: "btn btn-default" %>
-    <%= link "Register", to: registration_path(@conn, :new), class: "btn btn-primary" %>
+    <h3>Welcome Guest!</h2>
   <% end %>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
 </div>

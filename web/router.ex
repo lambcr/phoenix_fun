@@ -30,9 +30,7 @@ defmodule Support.Router do
     resources "/issues", IssueController
     resources "/users", UserController, except: [:new, :edit]
 
-    get "/helloagain/:name", PageController, :hello
     get "/hello", HelloController, :index
-    get "/hello/:messenger", HelloController, :show
   end
 
   # Other scopes may use custom stacks.

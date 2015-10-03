@@ -19,3 +19,44 @@ import "deps/phoenix_html/web/static/js/phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 import socket from "./socket"
+
+import {Socket} from "deps/phoenix/web/static/js/phoenix"
+
+class App {
+  static init() {
+    var username = $("#username")
+    var msgBody  = $("#message")
+
+    let socket = new Socket("/socket")
+    socket.connect()
+    socket.onClose( e => console.log("Closed connection") )
+
+    var channel = socket.channel("rooms:lobby", {})
+    channel.join()
+      .receive( "error", () => console.log("Connection error") )
+      .receive( "ok",    () => console.log("Connected") )
+
+    msgBody.off("keypress")
+      .on("keypress", e => {
+        if (e.keyCode == 13) {
+          channel.push("new:message", {
+            user: username.val(),
+            body: msgBody.val()
+          })
+          msgBody.val("")
+        }
+      })
+
+    channel.on( "new:message", msg => this.renderMessage(msg) )
+  }
+
+  static renderMessage(msg) {
+    var messages = $("#messages")
+    messages.append(`<p><b>[${msg.user}]</b>: ${msg.body}</p>`)
+  }
+
+}
+
+$( () => App.init() )
+
+export default App
