@@ -27,7 +27,7 @@ class App {
     var username = $("#username")
     var msgBody  = $("#message")
 
-    let socket = new Socket("ws://" + location.host + "/socket")
+    let socket = new Socket("/socket")
     socket.connect()
     socket.onClose( e => console.log("Closed connection") )
 
