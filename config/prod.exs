@@ -13,7 +13,8 @@ use Mix.Config
 # which you typically run after static files are built.
 config :support, Support.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [scheme: "https", host: "shrouded-thicket-5341.heroku.com", port: 443],
+  #url: [scheme: "https", host: "shrouded-thicket-5341.heroku.com", port: 443],
+  url: [host: "shrouded-thicket-5341.heroku.com"],
 force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/manifest.json"
 
