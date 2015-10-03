@@ -31,7 +31,7 @@
       <%= @inner %>
 
     </div> <!-- /container -->
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script> <!-- TODO: Fix this -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script> <!-- TODO: Fix this -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script>window.userToken = "<%= assigns[:user_token] %>";</script>
   </body>
